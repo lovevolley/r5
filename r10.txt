@@ -1,0 +1,15 @@
+# Load the required library
+library(rpart)
+# Load the iris dataset
+data(iris)
+# Fit a decision tree model to the data
+model <- rpart(Species ~ ., data = iris, method = "class")
+# Print a summary of the model
+printcp(model)
+# Plot the decision tree
+plot(model, uniform = TRUE, main = "Decision Tree for Iris Dataset")
+text(model, use.n = TRUE, all = TRUE, cex = 0.8)
+# Predict the class of a new observation
+new_observation <- data.frame(Sepal.Length = 5.1, Sepal.Width = 3.5, Petal.Length = 1.4,Petal.Width = 0.2)
+prediction <- predict(model, new_observation, type = "class")
+print(prediction)
